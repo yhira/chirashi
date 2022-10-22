@@ -53,6 +53,8 @@ type
     A1: TMenuItem;
     N4: TMenuItem;
     C2: TMenuItem;
+    ToolButton14: TToolButton;
+    ToolButton15: TToolButton;
     procedure FormCreate(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure Action1Execute(Sender: TObject);
