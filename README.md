@@ -1,4 +1,4 @@
-チラシの裏
+﻿チラシの裏
 ===================================
 
 書き捨て（下書き）文章作成用の低機能エディターです。
@@ -8,7 +8,7 @@ https://nelog.jp/chirashi
 
 このソフトはみずさんが作成されたExtIniFileコンポーネント（現在配布サイトなし）を利用しています。
 
-アイコンは、FindIcons.comのPublic DomainとFreeSoftライセンスのものを利用しています。
+アイコンは、FindIcons.comのPublic DomainとFreewareライセンスのものを利用しています。
 https://findicons.com
 
 
