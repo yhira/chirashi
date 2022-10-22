@@ -1,0 +1,4 @@
+*.exe
+__history/
+Win32/
+Images/
