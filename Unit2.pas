@@ -5,16 +5,22 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.StdCtrls ,ShellAPI,
-  Vcl.Imaging.jpeg;
+  Vcl.Imaging.jpeg, Vcl.Imaging.pngimage;
 
 type
   TForm2 = class(TForm)
-    Image1: TImage;
+    ImageSupermarket: TImage;
     Label1: TLabel;
     Label2: TLabel;
     Label3: TLabel;
     Label4: TLabel;
-    Image2: TImage;
+    ImagePachi1: TImage;
+    ImageSushi: TImage;
+    ImagePachi2: TImage;
+    ImageButsudan: TImage;
+    ImageHuku1: TImage;
+    ImageKaden: TImage;
+    ImageCar: TImage;
     procedure Label3Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure Label3MouseEnter(Sender: TObject);
@@ -59,17 +65,45 @@ begin
 end;
 
 procedure TForm2.FormCreate(Sender: TObject);
+var
+  r: Integer;
 begin
   Label4.Caption := GetSelfVersion();
 
   Randomize;
-  if (Random(10) = 0) then
-  begin
-    Image1.Visible := False;
-    Image2.Visible := True;
+  r := Random(99);
+  if (r = 0) then begin
+    // 1/100
+    ImageButsudan.Align := alClient;
+    ImageButsudan.Visible := True;
+  end else if (r <= 1) and (r <= 2) then begin
+   // 2/100
+    ImagePachi2.Align := alClient;
+    ImagePachi2.Visible := True;
+  end else if (r <= 3) and (r <= 5) then begin
+    // 3/100
+    ImageSushi.Align := alClient;
+    ImageSushi.Visible := True;
+  end else if (r <= 6) and (r <= 9) then begin
+    // 4/100
+    ImageCar.Align := alClient;
+    ImageCar.Visible := True;
+  end else if (r <= 10) and (r <= 14) then begin
+    // 5/100
+    ImageKaden.Align := alClient;
+    ImageKaden.Visible := True;
+  end else if (r <= 15) and (r <= 19) then begin
+    // 5/100
+    ImageHuku1.Align := alClient;
+    ImageHuku1.Visible := True;
+  end else if (r <= 20) and (r <= 29) then begin
+    // 10/100
+    ImagePachi1.Align := alClient;
+    ImagePachi1.Visible := True;
   end else begin
-    Image1.Visible := True;
-    Image2.Visible := False;
+    // 70/100
+    ImageSupermarket.Align := alClient;
+    ImageSupermarket.Visible := True;
   end;
 end;
 

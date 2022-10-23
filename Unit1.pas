@@ -55,6 +55,9 @@ type
     C2: TMenuItem;
     ToolButton14: TToolButton;
     ToolButton15: TToolButton;
+    ActionTop: TAction;
+    ToolButton16: TToolButton;
+    ToolButton17: TToolButton;
     procedure FormCreate(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure Action1Execute(Sender: TObject);
@@ -64,6 +67,7 @@ type
     procedure EditRedo1Execute(Sender: TObject);
     procedure Action4Execute(Sender: TObject);
     procedure FormShow(Sender: TObject);
+    procedure ActionTopExecute(Sender: TObject);
   private
     { Private 宣言 }
   public
@@ -122,6 +126,17 @@ begin
     Form2.ShowModal;
   finally
     Form2.Free;
+  end;
+end;
+
+procedure TForm1.ActionTopExecute(Sender: TObject);
+begin
+  if ActionTop.Checked then begin
+    //常に手前に表示
+    SetWindowPos()(handle,HWND_TOPMOST,0,0,0,0,SWP_NOMOVE Or SWP_NOSIZE or SWP_NOACTIVATE);
+  end else begin
+    //常に手前に表示を解除
+    SetWindowPos(handle,HWND_NOTOPMOST,0,0,0,0,SWP_NOMOVE Or SWP_NOSIZE or SWP_NOACTIVATE);
   end;
 end;
 
