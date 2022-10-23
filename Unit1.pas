@@ -58,6 +58,7 @@ type
     ActionTop: TAction;
     ToolButton16: TToolButton;
     ToolButton17: TToolButton;
+    ToolButton18: TToolButton;
     procedure FormCreate(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure Action1Execute(Sender: TObject);
@@ -67,7 +68,7 @@ type
     procedure EditRedo1Execute(Sender: TObject);
     procedure Action4Execute(Sender: TObject);
     procedure FormShow(Sender: TObject);
-    procedure ActionTopExecute(Sender: TObject);
+    procedure ActionTopUpdate(Sender: TObject);
   private
     { Private 宣言 }
   public
@@ -129,11 +130,11 @@ begin
   end;
 end;
 
-procedure TForm1.ActionTopExecute(Sender: TObject);
+procedure TForm1.ActionTopUpdate(Sender: TObject);
 begin
-  if ActionTop.Checked then begin
+    if ActionTop.Checked then begin
     //常に手前に表示
-    SetWindowPos()(handle,HWND_TOPMOST,0,0,0,0,SWP_NOMOVE Or SWP_NOSIZE or SWP_NOACTIVATE);
+    SetWindowPos(handle,HWND_TOPMOST,0,0,0,0,SWP_NOMOVE Or SWP_NOSIZE or SWP_NOACTIVATE);
   end else begin
     //常に手前に表示を解除
     SetWindowPos(handle,HWND_NOTOPMOST,0,0,0,0,SWP_NOMOVE Or SWP_NOSIZE or SWP_NOACTIVATE);
@@ -158,6 +159,7 @@ begin
   //設定の保存
   ExIniFile.WriteForm2('Main', Self);
   ExIniFile.WriteFont('Edit', 'Font', RichEdit1.Font);
+  ExIniFile.WriteBool('Config', 'TopForm', ActionTop.Checked);
 
   //解放
   ExIniFile.Free;
@@ -181,9 +183,10 @@ begin
   ExIniFile := TExtIniFile.Create(Self);
   ExIniFile.FileName := 'settings.ini';
 
-  //設定の保存
+  //設定の読み込み読み込み
   ExIniFile.ReadFormEx2('Main', Self);
   ExIniFile.ReadFont('Edit', 'Font', RichEdit1.Font);
+  ActionTop.Checked := ExIniFile.ReadBool('Config', 'TopForm', ActionTop.Checked);
 end;
 
 end.

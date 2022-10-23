@@ -560,7 +560,6 @@ object Form1: TForm1
     Images = VirtualImageList1
     ParentColor = False
     TabOrder = 0
-    ExplicitTop = -6
     object ToolButton7: TToolButton
       Left = 0
       Top = 0
@@ -659,22 +658,33 @@ object Form1: TForm1
       ParentShowHint = False
       ShowHint = True
     end
-    object ToolButton17: TToolButton
+    object ToolButton18: TToolButton
       Left = 280
+      Top = 0
+      Width = 4
+      Caption = 'ToolButton18'
+      ImageIndex = 9
+      ImageName = 'delete'
+      Style = tbsSeparator
+    end
+    object ToolButton17: TToolButton
+      Left = 284
       Top = 0
       Action = ActionTop
       ImageIndex = 10
       ImageName = 'pin'
+      ParentShowHint = False
+      ShowHint = True
     end
     object ToolButton6: TToolButton
-      Left = 313
+      Left = 317
       Top = 0
       Width = 4
       Caption = 'ToolButton6'
       Style = tbsSeparator
     end
     object ToolButton12: TToolButton
-      Left = 317
+      Left = 321
       Top = 0
       Action = Action2
       ImageIndex = 6
@@ -683,7 +693,7 @@ object Form1: TForm1
       ShowHint = True
     end
     object ToolButton16: TToolButton
-      Left = 350
+      Left = 354
       Top = 0
       Width = 4
       Caption = 'ToolButton16'
@@ -692,7 +702,7 @@ object Form1: TForm1
       Style = tbsSeparator
     end
     object ToolButton11: TToolButton
-      Left = 354
+      Left = 358
       Top = 0
       Action = Action4
       ImageIndex = 8
@@ -797,9 +807,11 @@ object Form1: TForm1
     end
     object ActionTop: TAction
       Category = #35373#23450
+      AutoCheck = True
       Caption = #24120#12395#26368#21069#21015#12395#34920#31034
+      Hint = #24120#12395#25163#21069#12395#34920#31034
       ShortCut = 16468
-      OnExecute = ActionTopExecute
+      OnUpdate = ActionTopUpdate
     end
   end
   object VirtualImageList1: TVirtualImageList
