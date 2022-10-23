@@ -1,4 +1,6 @@
 *.exe
+*.local
+*.identcache
 __history/
 __recovery/
 Win32/
