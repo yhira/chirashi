@@ -59,6 +59,7 @@ type
     ToolButton16: TToolButton;
     ToolButton17: TToolButton;
     ToolButton18: TToolButton;
+    ActionList1: TActionList;
     procedure FormCreate(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure Action1Execute(Sender: TObject);
@@ -122,17 +123,25 @@ end;
 
 procedure TForm1.Action4Execute(Sender: TObject);
 begin
+  if ActionTop.Checked then begin
+    //常に手前に表示を解除
+    SetWindowPos(handle,HWND_NOTOPMOST,0,0,0,0,SWP_NOMOVE Or SWP_NOSIZE or SWP_NOACTIVATE);
+  end;
   Form2 := TForm2.Create(self);
   try
     Form2.ShowModal;
   finally
     Form2.Free;
+    if ActionTop.Checked then begin
+      //常に手前に表示
+      SetWindowPos(handle,HWND_TOPMOST,0,0,0,0,SWP_NOMOVE Or SWP_NOSIZE or SWP_NOACTIVATE);
+    end;
   end;
 end;
 
 procedure TForm1.ActionTopUpdate(Sender: TObject);
 begin
-    if ActionTop.Checked then begin
+  if ActionTop.Checked then begin
     //常に手前に表示
     SetWindowPos(handle,HWND_TOPMOST,0,0,0,0,SWP_NOMOVE Or SWP_NOSIZE or SWP_NOACTIVATE);
   end else begin

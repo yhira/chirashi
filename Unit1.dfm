@@ -811,6 +811,7 @@ object Form1: TForm1
       Caption = #24120#12395#26368#21069#21015#12395#34920#31034
       Hint = #24120#12395#25163#21069#12395#34920#31034
       ShortCut = 16468
+      OnExecute = ActionTopUpdate
       OnUpdate = ActionTopUpdate
     end
   end
@@ -1664,5 +1665,9 @@ object Form1: TForm1
       ImageIndex = 7
       ImageName = 'edit_clear'
     end
+  end
+  object ActionList1: TActionList
+    Left = 64
+    Top = 168
   end
 end
