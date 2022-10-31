@@ -8,7 +8,7 @@ uses
   Vcl.StdActns, System.Actions, Vcl.ActnList, Vcl.PlatformDefaultStyleActnCtrls,
   Vcl.ActnMan, Vcl.ActnCtrls, Vcl.BaseImageCollection, Vcl.ImageCollection,
   System.ImageList, Vcl.ImgList, Vcl.VirtualImageList, System.IniFiles, ExtIniFile,
-  Vcl.Menus;
+  Vcl.Menus, Vcl.AppEvnts;
 
 type
   TForm1 = class(TForm)
@@ -60,8 +60,8 @@ type
     ToolButton17: TToolButton;
     ToolButton18: TToolButton;
     ActionList1: TActionList;
+    ApplicationEvents1: TApplicationEvents;
     procedure FormCreate(Sender: TObject);
-    procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure Action1Execute(Sender: TObject);
     procedure FormActivate(Sender: TObject);
     procedure Action2Execute(Sender: TObject);
@@ -70,8 +70,12 @@ type
     procedure Action4Execute(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure ActionTopUpdate(Sender: TObject);
+    procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
+    procedure ApplicationEvents1SettingChange(Sender: TObject; Flag: Integer;
+      const Section: string; var Result: Integer);
   private
     { Private 宣言 }
+    procedure HandleThemes;
   public
     { Public 宣言 }
   end;
@@ -82,11 +86,20 @@ var
 
 implementation
 
-uses Unit2;
+uses Unit2, WindowsDarkMode;
 
 {$R *.dfm}
 
-
+procedure TForm1.HandleThemes;
+begin
+  SetAppropriateThemeMode('Windows10 Media', 'Windows');
+  if DarkModeIsEnabled then
+  begin
+   RichEdit1.Font.Color := clWhite;
+  end else begin
+   RichEdit1.Font.Color := clBlack;
+  end;
+end;
 
 procedure TForm1.Action1Execute(Sender: TObject);
 var
@@ -150,6 +163,13 @@ begin
   end;
 end;
 
+procedure TForm1.ApplicationEvents1SettingChange(Sender: TObject; Flag: Integer;
+  const Section: string; var Result: Integer);
+begin
+  if SameText('ImmersiveColorSet', String(Section)) then
+    HandleThemes; //ダークモード
+end;
+
 procedure TForm1.EditRedo1Execute(Sender: TObject);
 begin
   RichEdit1.Undo;
@@ -160,7 +180,7 @@ begin
   RichEdit1.SetFocus;
 end;
 
-procedure TForm1.FormClose(Sender: TObject; var Action: TCloseAction);
+procedure TForm1.FormCloseQuery(Sender: TObject; var CanClose: Boolean);
 begin
   //エディターの保存
   RichEdit1.Lines.SaveToFile(ChangeFileExt( Application.ExeName, '.txt' ));
@@ -178,6 +198,9 @@ procedure TForm1.FormCreate(Sender: TObject);
 var
   FileName: String;
  begin
+   //ダークモード
+   HandleThemes;
+
    //エディターの読み込み
    FileName := ChangeFileExt( Application.ExeName, '.txt' );
    if FileExists(FileName) then

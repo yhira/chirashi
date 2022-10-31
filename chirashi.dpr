@@ -6,7 +6,10 @@ uses
   Dialogs,
   Messages,
   Unit1 in 'Unit1.pas' {Form1},
-  Unit2 in 'Unit2.pas' {Form2};
+  Unit2 in 'Unit2.pas' {Form2},
+  Vcl.Themes,
+  Vcl.Styles,
+  WindowsDarkMode in 'WindowsDarkMode.pas';
 
 {$R *.res}
 
@@ -50,6 +53,7 @@ begin
 
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
+  Application.Title := 'ƒ`ƒ‰ƒV‚Ì— ';
   Application.CreateForm(TForm1, Form1);
   Application.CreateForm(TForm2, Form2);
   Application.Run;

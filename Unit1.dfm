@@ -543,7 +543,7 @@ object Form1: TForm1
     FFE00000003FFFFFFFFF8000003FFFFFFFFFFC00007FFFFFFFFFFFF001FF}
   OldCreateOrder = False
   OnActivate = FormActivate
-  OnClose = FormClose
+  OnCloseQuery = FormCloseQuery
   OnCreate = FormCreate
   OnShow = FormShow
   PixelsPerInch = 96
@@ -717,6 +717,7 @@ object Form1: TForm1
     Width = 716
     Height = 420
     Align = alClient
+    Color = clWhite
     Font.Charset = SHIFTJIS_CHARSET
     Font.Color = clWindowText
     Font.Height = -24
@@ -727,6 +728,7 @@ object Form1: TForm1
     ScrollBars = ssVertical
     TabOrder = 1
     Zoom = 100
+    ExplicitTop = 47
   end
   object ActionManager1: TActionManager
     Left = 544
@@ -1669,5 +1671,10 @@ object Form1: TForm1
   object ActionList1: TActionList
     Left = 64
     Top = 168
+  end
+  object ApplicationEvents1: TApplicationEvents
+    OnSettingChange = ApplicationEvents1SettingChange
+    Left = 640
+    Top = 392
   end
 end

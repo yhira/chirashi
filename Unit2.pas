@@ -5,7 +5,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.StdCtrls ,ShellAPI,
-  Vcl.Imaging.jpeg, Vcl.Imaging.pngimage;
+  Vcl.Imaging.jpeg, Vcl.Imaging.pngimage, Vcl.AppEvnts;
 
 type
   TForm2 = class(TForm)
@@ -21,13 +21,18 @@ type
     ImageHuku1: TImage;
     ImageKaden: TImage;
     ImageCar: TImage;
+    ImageSuperDark: TImage;
+    ApplicationEvents1: TApplicationEvents;
     procedure Label3Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure Label3MouseEnter(Sender: TObject);
     procedure Label3MouseLeave(Sender: TObject);
     procedure Image2Click(Sender: TObject);
+    procedure ApplicationEvents1SettingChange(Sender: TObject; Flag: Integer;
+      const Section: string; var Result: Integer);
   private
     { Private 宣言 }
+    procedure HandleThemes;
   public
     { Public 宣言 }
   end;
@@ -38,6 +43,8 @@ var
 implementation
 
 {$R *.dfm}
+
+uses WindowsDarkMode;
 
 function GetSelfVersion: String;
 var
@@ -64,46 +71,78 @@ begin
   end;
 end;
 
+procedure TForm2.ApplicationEvents1SettingChange(Sender: TObject; Flag: Integer;
+  const Section: string; var Result: Integer);
+begin
+  HandleThemes;
+end;
+
 procedure TForm2.FormCreate(Sender: TObject);
+begin
+  Label4.Caption := GetSelfVersion();
+  HandleThemes;
+end;
+
+procedure TForm2.HandleThemes;
 var
   r: Integer;
 begin
-  Label4.Caption := GetSelfVersion();
-
   Randomize;
   r := Random(99);
-  if (r = 0) then begin
-    // 1/100
-    ImageButsudan.Align := alClient;
-    ImageButsudan.Visible := True;
-  end else if (r <= 1) and (r <= 2) then begin
-   // 2/100
-    ImagePachi2.Align := alClient;
-    ImagePachi2.Visible := True;
-  end else if (r <= 3) and (r <= 5) then begin
-    // 3/100
-    ImageSushi.Align := alClient;
-    ImageSushi.Visible := True;
-  end else if (r <= 6) and (r <= 9) then begin
-    // 4/100
-    ImageCar.Align := alClient;
-    ImageCar.Visible := True;
-  end else if (r <= 10) and (r <= 14) then begin
-    // 5/100
-    ImageKaden.Align := alClient;
-    ImageKaden.Visible := True;
-  end else if (r <= 15) and (r <= 19) then begin
-    // 5/100
-    ImageHuku1.Align := alClient;
-    ImageHuku1.Visible := True;
-  end else if (r <= 20) and (r <= 29) then begin
-    // 10/100
-    ImagePachi1.Align := alClient;
-    ImagePachi1.Visible := True;
-  end else begin
-    // 70/100
-    ImageSupermarket.Align := alClient;
-    ImageSupermarket.Visible := True;
+  if DarkModeIsEnabled then
+  begin
+    ImageButsudan.Visible := false;
+    ImagePachi2.Visible := false;
+    ImageSushi.Visible := false;
+    ImageCar.Visible := false;
+    ImageKaden.Visible := false;
+    ImageHuku1.Visible := false;
+    ImagePachi1.Visible := false;
+    ImageSupermarket.Visible := false;
+
+
+    //ダークモード
+    // 100/100
+    ImageSuperDark.Align := alClient;
+    ImageSuperDark.Visible := True;
+  end
+  else
+  begin
+    ImageSuperDark.Visible := false;
+    //ライトモード
+    if (r = 0) then begin
+      // 1/100
+      ImageButsudan.Align := alClient;
+      ImageButsudan.Visible := True;
+    end else if (r <= 1) and (r <= 2) then begin
+     // 2/100
+      ImagePachi2.Align := alClient;
+      ImagePachi2.Visible := True;
+    end else if (r <= 3) and (r <= 5) then begin
+      // 3/100
+      ImageSushi.Align := alClient;
+      ImageSushi.Visible := True;
+    end else if (r <= 6) and (r <= 9) then begin
+      // 4/100
+      ImageCar.Align := alClient;
+      ImageCar.Visible := True;
+    end else if (r <= 10) and (r <= 14) then begin
+      // 5/100
+      ImageKaden.Align := alClient;
+      ImageKaden.Visible := True;
+    end else if (r <= 15) and (r <= 19) then begin
+      // 5/100
+      ImageHuku1.Align := alClient;
+      ImageHuku1.Visible := True;
+    end else if (r <= 20) and (r <= 29) then begin
+      // 10/100
+      ImagePachi1.Align := alClient;
+      ImagePachi1.Visible := True;
+    end else begin
+      // 70/100
+      ImageSupermarket.Align := alClient;
+      ImageSupermarket.Visible := True;
+    end;
   end;
 end;
 
