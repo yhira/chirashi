@@ -8,7 +8,7 @@ uses
   Vcl.StdActns, System.Actions, Vcl.ActnList, Vcl.PlatformDefaultStyleActnCtrls,
   Vcl.ActnMan, Vcl.ActnCtrls, Vcl.BaseImageCollection, Vcl.ImageCollection,
   System.ImageList, Vcl.ImgList, Vcl.VirtualImageList, System.IniFiles, ExtIniFile,
-  Vcl.Menus, Vcl.AppEvnts;
+  Vcl.Menus, Vcl.AppEvnts, ShellAPI, System.NetEncoding;
 
 type
   TForm1 = class(TForm)
@@ -61,6 +61,12 @@ type
     ToolButton18: TToolButton;
     ActionList1: TActionList;
     ApplicationEvents1: TApplicationEvents;
+    ActionSearch: TAction;
+    N5: TMenuItem;
+    PopupSearch: TMenuItem;
+    SeparatorSearch: TMenuItem;
+    ToolButton19: TToolButton;
+    ToolButton20: TToolButton;
     procedure FormCreate(Sender: TObject);
     procedure Action1Execute(Sender: TObject);
     procedure FormActivate(Sender: TObject);
@@ -73,6 +79,8 @@ type
     procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
     procedure ApplicationEvents1SettingChange(Sender: TObject; Flag: Integer;
       const Section: string; var Result: Integer);
+    procedure RichEdit1SelectionChange(Sender: TObject);
+    procedure ActionSearchExecute(Sender: TObject);
   private
     { Private êÈåæ }
     procedure HandleThemes;
@@ -99,6 +107,29 @@ begin
   end else begin
    RichEdit1.Font.Color := clBlack;
   end;
+end;
+
+procedure TForm1.RichEdit1SelectionChange(Sender: TObject);
+var
+  s: string;
+begin
+  s := Trim(RichEdit1.SelText);
+  if not (s = '') then
+  begin
+    PopupSearch.Visible := true;
+    ActionSearch.Enabled := true;
+    if Length(s) > 10 then
+    begin
+      s := Copy(s, 1, 10) + '...';
+    end;
+    ActionSearch.Caption := 'Google Ç≈åüçıÅF"' + s + '"';
+  end
+  else
+  begin
+    PopupSearch.Visible := false;
+    ActionSearch.Enabled := false;
+  end;
+
 end;
 
 procedure TForm1.Action1Execute(Sender: TObject);
@@ -149,6 +180,18 @@ begin
       //èÌÇ…éËëOÇ…ï\é¶
       SetWindowPos(handle,HWND_TOPMOST,0,0,0,0,SWP_NOMOVE Or SWP_NOSIZE or SWP_NOACTIVATE);
     end;
+  end;
+end;
+
+procedure TForm1.ActionSearchExecute(Sender: TObject);
+var s, url: String;
+begin
+  s := trim(RichEdit1.SelText);
+  if not (s = '') then
+  begin
+    url := 'https://www.google.com/search?q=' + TNetEncoding.URL.EncodeQuery(s);
+    ShellExecute(Self.Handle, 'open', PChar(url),
+          '', '', SW_SHOWNORMAL);
   end;
 end;
 

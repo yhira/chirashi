@@ -5,6 +5,8 @@ object Form1: TForm1
   ClientHeight = 461
   ClientWidth = 716
   Color = clBtnFace
+  Constraints.MinHeight = 300
+  Constraints.MinWidth = 450
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -11
@@ -565,8 +567,6 @@ object Form1: TForm1
       Top = 0
       Hint = #26032#12375#12356#12513#12514
       Action = Action1
-      ImageIndex = 5
-      ImageName = 'new_document'
       ParentShowHint = False
       ShowHint = True
     end
@@ -581,8 +581,6 @@ object Form1: TForm1
       Left = 37
       Top = 0
       Action = EditUndo1
-      ImageIndex = 9
-      ImageName = 'delete'
     end
     object ToolButton15: TToolButton
       Left = 70
@@ -621,8 +619,6 @@ object Form1: TForm1
       Left = 173
       Top = 0
       Action = EditDelete1
-      ImageIndex = 3
-      ImageName = 'erase'
       ParentShowHint = False
       ShowHint = True
     end
@@ -637,8 +633,6 @@ object Form1: TForm1
       Left = 210
       Top = 0
       Action = EditSelectAll1
-      ImageIndex = 4
-      ImageName = 'edit_select_all'
       ParentShowHint = False
       ShowHint = True
     end
@@ -653,8 +647,6 @@ object Form1: TForm1
       Left = 247
       Top = 0
       Action = Action3
-      ImageIndex = 7
-      ImageName = 'edit_clear'
       ParentShowHint = False
       ShowHint = True
     end
@@ -671,29 +663,41 @@ object Form1: TForm1
       Left = 284
       Top = 0
       Action = ActionTop
-      ImageIndex = 10
-      ImageName = 'pin'
+      ParentShowHint = False
+      ShowHint = True
+    end
+    object ToolButton20: TToolButton
+      Left = 317
+      Top = 0
+      Width = 4
+      Caption = 'ToolButton20'
+      ImageIndex = 9
+      ImageName = 'delete'
+      Style = tbsSeparator
+    end
+    object ToolButton19: TToolButton
+      Left = 321
+      Top = 0
+      Action = ActionSearch
       ParentShowHint = False
       ShowHint = True
     end
     object ToolButton6: TToolButton
-      Left = 317
+      Left = 354
       Top = 0
       Width = 4
       Caption = 'ToolButton6'
       Style = tbsSeparator
     end
     object ToolButton12: TToolButton
-      Left = 321
+      Left = 358
       Top = 0
       Action = Action2
-      ImageIndex = 6
-      ImageName = 'text_font'
       ParentShowHint = False
       ShowHint = True
     end
     object ToolButton16: TToolButton
-      Left = 354
+      Left = 391
       Top = 0
       Width = 4
       Caption = 'ToolButton16'
@@ -702,11 +706,9 @@ object Form1: TForm1
       Style = tbsSeparator
     end
     object ToolButton11: TToolButton
-      Left = 358
+      Left = 395
       Top = 0
       Action = Action4
-      ImageIndex = 8
-      ImageName = 'undo'
       ParentShowHint = False
       ShowHint = True
     end
@@ -728,9 +730,12 @@ object Form1: TForm1
     ScrollBars = ssVertical
     TabOrder = 1
     Zoom = 100
+    OnSelectionChange = RichEdit1SelectionChange
+    ExplicitLeft = -24
     ExplicitTop = 47
   end
   object ActionManager1: TActionManager
+    Images = VirtualImageList1
     Left = 544
     Top = 224
     StyleName = 'Platform Default'
@@ -759,18 +764,23 @@ object Form1: TForm1
       Category = #32232#38598
       Caption = #12377#12409#12390#36984#25246'(&A)'
       Hint = #12377#12409#12390#36984#25246'|'#12489#12461#12517#12513#12531#12488#20840#20307#12434#36984#25246#12375#12414#12377
+      ImageIndex = 4
+      ImageName = 'edit_select_all'
       ShortCut = 16449
     end
     object EditDelete1: TEditDelete
       Category = #32232#38598
       Caption = #21066#38500'(&D)'
       Hint = #21066#38500'|'#36984#25246#37096#20998#12434#28040#21435#12375#12414#12377
-      ImageIndex = 5
+      ImageIndex = 3
+      ImageName = 'erase'
       ShortCut = 46
     end
     object Action1: TAction
       Category = #32232#38598
       Caption = #26032#12375#12356#12513#12514'(&N)'
+      ImageIndex = 5
+      ImageName = 'new_document'
       ShortCut = 16462
       OnExecute = Action1Execute
     end
@@ -778,6 +788,8 @@ object Form1: TForm1
       Category = #35373#23450
       Caption = #12501#12457#12531#12488#35373#23450
       Hint = #12501#12457#12531#12488#35373#23450
+      ImageIndex = 6
+      ImageName = 'text_font'
       ShortCut = 12358
       OnExecute = Action2Execute
     end
@@ -785,6 +797,8 @@ object Form1: TForm1
       Category = #32232#38598
       Caption = #12463#12522#12450'(&C)'
       Hint = #20840#12486#12461#12473#12488#12434#12463#12522#12450
+      ImageIndex = 7
+      ImageName = 'edit_clear'
       ShortCut = 16460
       OnExecute = Action3Execute
     end
@@ -792,7 +806,8 @@ object Form1: TForm1
       Category = #32232#38598
       Caption = #20803#12395#25147#12377'(&U)'
       Hint = #20803#12395#25147#12377'|'#30452#21069#12398#25805#20316#12434#20803#12395#25147#12375#12414#12377
-      ImageIndex = 3
+      ImageIndex = 9
+      ImageName = 'delete'
       ShortCut = 16474
     end
     object EditRedo1: TAction
@@ -805,6 +820,8 @@ object Form1: TForm1
     object Action4: TAction
       Caption = #12496#12540#12472#12519#12531#24773#22577
       Hint = #12496#12540#12472#12519#12531#24773#22577
+      ImageIndex = 8
+      ImageName = 'undo'
       OnExecute = Action4Execute
     end
     object ActionTop: TAction
@@ -812,9 +829,19 @@ object Form1: TForm1
       AutoCheck = True
       Caption = #24120#12395#26368#21069#21015#12395#34920#31034
       Hint = #24120#12395#25163#21069#12395#34920#31034
+      ImageIndex = 10
+      ImageName = 'pin'
       ShortCut = 16468
       OnExecute = ActionTopUpdate
       OnUpdate = ActionTopUpdate
+    end
+    object ActionSearch: TAction
+      Caption = 'Google'#12391#26908#32034
+      Hint = 'Google'#12391#26908#32034
+      ImageIndex = 11
+      ImageName = 'Google'
+      ShortCut = 16455
+      OnExecute = ActionSearchExecute
     end
   end
   object VirtualImageList1: TVirtualImageList
@@ -886,6 +913,12 @@ object Form1: TForm1
         CollectionName = 'pin'
         Disabled = False
         Name = 'pin'
+      end
+      item
+        CollectionIndex = 12
+        CollectionName = 'Google'
+        Disabled = False
+        Name = 'Google'
       end>
     ImageCollection = ImageCollection1
     Left = 128
@@ -1608,6 +1641,63 @@ object Form1: TForm1
               B3D5901052C7711C43295D680D8D87176D696949965EDEBA756BF504FC9FF1CF
               00815DDEBAA7965AE50000000049454E44AE426082}
           end>
+      end
+      item
+        Name = 'Google'
+        SourceImages = <
+          item
+            Image.Data = {
+              89504E470D0A1A0A0000000D49484452000000300000003008060000005702F9
+              8700000006624B474400FF00FF00FFA0BDA793000005EE494441546881ED595B
+              6C544518FE66CE9EDD6DCBF67EA160696D9102BD5028D8728B6D428CA14F8584
+              17840089D18006D058351AB38997449022C6D218422088312E2F680252202C58
+              A22D05BB5869DACA4DDA0A2DF4B2B4DDEE9EB367C607A421DDB367CFE92E9728
+              DFDBCEFCFF3FDFB733E79FF96780A7788AFF37482482703B4CF08AEBE0619570
+              F342B8790A2488F0720A064004C724E2838DF4C3465A60A30E58E503C40E7FB8
+              638725805789A518623BD0C94AE0E68221671B51308D3622916E229FCAAE8972
+              989000FE9125175DF22174B082B0FF4301C073F422D2D84AF231AE1875372C80
+              BF43ABD1CCB760944764F98D21060CB3E97652CDDE35E2A69B04AF46145AE905
+              B4B359C6D919402E75E1195642EC90F498533D467C3712D04CAF3D74F200D0CE
+              8AE0A6DBF49A879C01BE0F569C2037D0C953C263A613F9E434A9E5E57ACD43CF
+              40236D7A74E40543E401C0A4D5C9DFA65FA281E5EB8E66230A32A90BD1FC30D2
+              683D3CFE4B002824530124B6046E54A29BE7634825E5E60B6748AD62883CA0B1
+              84F8364B0E9C52078679E859B2110579742F629437427D7CDC8E680C0ABBD1C1
+              5E1E13728F7C9951F2809680AD4213CE2BF34346C8A6DD98C18AC9FBE8313230
+              FF0039B84ECFC246DA274A1E0822809F89CA809F5D469DDF8C0605E041BC67D1
+              662C630BC82A281325102E822C0FBE092698516102568B40948ACE6CDAFDB8C9
+              032A33C01D109066F90BC0D4B1C6BB1C70F881EBECDEEF58A26006CF243BD1FD
+              A8880643E00CA4463D8F07C903402C0136884085E9DED96506DDFF24900754D3
+              A852AEFA6950000B056032E9C10579D34367A61381020829D6F4C8A20EB20E3E
+              BD03A457FD1E2C051842AC698817C5B75EFDBEEA95E90FB6072E218E5CCD481C
+              472341C828EEFA6DA4DB3B79EAF8F6400184A48788753952A48CA24F4A308F6F
+              5349A37C927618DFAD4811320A8FDF1AC057D771FA490157A9A154049061CD28
+              26CB944811328A18C1139010543E627E53338A1FD991A3640C49167740F653F9
+              88D1A11985A22272948C21C9D2DF37BE4D651FE04DE0A4522D403FB3A076246F
+              43B503556FAEFA7554CFA037B715EAAABBB71F5813F3ED9FEBDD3DBEE4A0D733
+              9951DDCDE3DB026740119C6ACE2DFE446CB9BB180D725AB43849AED143CA08FE
+              76E7EED2220F0053627ABF1BDF1628A06CF41C80AEFB3F39801FBD59F8706801
+              06980500D020A7AEADA9CBCF0897F47DECAC7D2DEB64CFD2F55A36C9E601C59B
+              13E718DF1E20801030801C0480112EE293A162ECF1CC82FF81C2CCCDCC42979C
+              D8E874966996A47A6077DA4D670617FD72474AD04CE9A549BF35D8CBED01D768
+              EA4E8CD45C5162E5ADEE45689453554D5AE4C4F49F3DF2F97044D89D76D3950B
+              935D8D03459ABBBF48FDC8B6746D56EB531540CA47BB0E79725A6FB2684D024D
+              52CA9CE323ECC6DEE3B986F786AF4FE44DEB69A5ED277B17E585B25D9C78FED2
+              7B1B775C50EB0B3A6D79E24065029558A8E02D7262BA7334E7C657C7E6EDB5EF
+              2BB386B23F505718B3EBC8823DF52399D76EA537672F9D7C5AD33ED634C473E3
+              DB5604EBD74C71B5478AAA8F4A595BF59E87E3A9A4CC360DB4C451DFE114EEAB
+              3709DE3FBC66818D7AA3667A397DB18F452FEF50E28A0699792CDB104E90D453
+              88E3D757A81E15564C3D565BB3B96AE3840400C067474A9AEBA5F4229D1A268C
+              D4C10C9C6A5F0BDFBF990E0096249F6F3B54B541F33A33E461EED991E192D9C2
+              E0433F81F6C677A2ACB006C9E67E0040415C5B5F4ACCE882507EBA7649A7332B
+              FEA427A3F5A29414AA56081B36D90AB16B61777672E73CFBDACF7B43D9EBBE5E
+              773AB3AC673DE9E7CE49690511A9118360A1B9C73597DC2E5DBEFCB2AEB2D5F0
+              23C59E9F0AB79DF265BC35C4C588D612B144662F88DD3B5EAD705519F19BD02B
+              CB373FCC9BDE259A1D4D52CA5CC9E0D3D8788860986FBEEDCAB2F4AD5CBDACE3
+              AA51FFB09E89F6D71514DF96A3BF6853E24B7B5894A11D3949F0FA670A838DD3
+              E07D7D7585EBD13EF28D878343183A5AB4C64DC4957DDC3AE78E624D1965A279
+              18026520B0123F8F83EC4BA0525F92E0BD98407C8ED8975C075791C77B2DF914
+              4FF15FC03F1A5F1829284F93BC0000000049454E44AE426082}
+          end>
       end>
     Left = 128
     Top = 288
@@ -1626,10 +1716,11 @@ object Form1: TForm1
     Images = VirtualImageList1
     Left = 360
     Top = 176
+    object N5: TMenuItem
+      Caption = '-'
+    end
     object N1: TMenuItem
       Action = Action1
-      ImageIndex = 5
-      ImageName = 'new_document'
     end
     object N2: TMenuItem
       Caption = '-'
@@ -1648,24 +1739,24 @@ object Form1: TForm1
     end
     object D1: TMenuItem
       Action = EditDelete1
-      ImageIndex = 3
-      ImageName = 'erase'
     end
     object N3: TMenuItem
       Caption = '-'
     end
     object A1: TMenuItem
       Action = EditSelectAll1
-      ImageIndex = 4
-      ImageName = 'edit_select_all'
     end
     object N4: TMenuItem
       Caption = '-'
     end
     object C2: TMenuItem
       Action = Action3
-      ImageIndex = 7
-      ImageName = 'edit_clear'
+    end
+    object SeparatorSearch: TMenuItem
+      Caption = '-'
+    end
+    object PopupSearch: TMenuItem
+      Action = ActionSearch
     end
   end
   object ActionList1: TActionList

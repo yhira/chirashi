@@ -9,7 +9,8 @@ uses
   Unit2 in 'Unit2.pas' {Form2},
   Vcl.Themes,
   Vcl.Styles,
-  WindowsDarkMode in 'WindowsDarkMode.pas';
+  WindowsDarkMode in 'WindowsDarkMode.pas',
+  ExtIniFile in 'ExtIniFile.pas';
 
 {$R *.res}
 
