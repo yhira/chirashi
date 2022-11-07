@@ -169,10 +169,10 @@
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
         <Icon_MainIcon>chirashi_Icon.ico</Icon_MainIcon>
         <VerInfo_AutoIncVersion>true</VerInfo_AutoIncVersion>
-        <VerInfo_Build>34</VerInfo_Build>
-        <VerInfo_Keys>CompanyName=メロブ;FileDescription=$(MSBuildProjectName);FileVersion=2.1.12.34;InternalName=チラシの裏;LegalCopyright=寝ログ;LegalTrademarks=;OriginalFilename=チラシの裏エディター;ProgramID=com.embarcadero.$(MSBuildProjectName);ProductName=$(MSBuildProjectName);ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
+        <VerInfo_Build>35</VerInfo_Build>
+        <VerInfo_Keys>CompanyName=メロブ;FileDescription=$(MSBuildProjectName);FileVersion=2.1.13.35;InternalName=チラシの裏;LegalCopyright=寝ログ;LegalTrademarks=;OriginalFilename=チラシの裏エディター;ProgramID=com.embarcadero.$(MSBuildProjectName);ProductName=$(MSBuildProjectName);ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
         <VerInfo_MajorVer>2</VerInfo_MajorVer>
-        <VerInfo_Release>12</VerInfo_Release>
+        <VerInfo_Release>13</VerInfo_Release>
         <VerInfo_Debug>true</VerInfo_Debug>
         <VerInfo_PreRelease>true</VerInfo_PreRelease>
         <VerInfo_MinorVer>1</VerInfo_MinorVer>
