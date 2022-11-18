@@ -595,7 +595,6 @@ object Form1: TForm1
       Left = 74
       Top = 0
       Action = EditCut1
-      ImageName = 'icons8-'#12399#12373#12415
       ParentShowHint = False
       ShowHint = True
     end
@@ -603,7 +602,6 @@ object Form1: TForm1
       Left = 107
       Top = 0
       Action = EditCopy1
-      ImageName = 'edit_copy'
       ParentShowHint = False
       ShowHint = True
     end
@@ -611,7 +609,6 @@ object Form1: TForm1
       Left = 140
       Top = 0
       Action = EditPaste1
-      ImageName = 'page_white_paste'
       ParentShowHint = False
       ShowHint = True
     end
@@ -731,7 +728,7 @@ object Form1: TForm1
     TabOrder = 1
     Zoom = 100
     OnSelectionChange = RichEdit1SelectionChange
-    ExplicitLeft = -24
+    ExplicitLeft = -8
     ExplicitTop = 47
   end
   object ActionManager1: TActionManager
@@ -744,6 +741,7 @@ object Form1: TForm1
       Caption = #20999#12426#21462#12426'(&T)'
       Hint = #20999#12426#21462#12426'|'#36984#25246#37096#20998#12434#20999#12426#21462#12387#12390#12463#12522#12483#12503#12508#12540#12489#12395#20837#12428#12414#12377
       ImageIndex = 0
+      ImageName = 'icons8-'#12399#12373#12415
       ShortCut = 16472
     end
     object EditCopy1: TEditCopy
@@ -751,6 +749,7 @@ object Form1: TForm1
       Caption = #12467#12500#12540'(&C)'
       Hint = #12467#12500#12540'|'#36984#25246#37096#20998#12434#12467#12500#12540#12375#12390#12463#12522#12483#12503#12508#12540#12489#12395#20837#12428#12414#12377
       ImageIndex = 1
+      ImageName = 'edit_copy'
       ShortCut = 16451
     end
     object EditPaste1: TEditPaste
@@ -758,7 +757,9 @@ object Form1: TForm1
       Caption = #36028#12426#20184#12369'(&P)'
       Hint = #36028#12426#20184#12369'|'#12463#12522#12483#12503#12508#12540#12489#12398#20869#23481#12434#25407#20837#12375#12414#12377
       ImageIndex = 2
+      ImageName = 'page_white_paste'
       ShortCut = 16470
+      OnExecute = EditPaste1Execute
     end
     object EditSelectAll1: TEditSelectAll
       Category = #32232#38598
@@ -1727,15 +1728,12 @@ object Form1: TForm1
     end
     object T1: TMenuItem
       Action = EditCut1
-      ImageName = 'icons8-'#12399#12373#12415
     end
     object C1: TMenuItem
       Action = EditCopy1
-      ImageName = 'edit_copy'
     end
     object P1: TMenuItem
       Action = EditPaste1
-      ImageName = 'page_white_paste'
     end
     object D1: TMenuItem
       Action = EditDelete1

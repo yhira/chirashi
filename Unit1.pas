@@ -81,6 +81,7 @@ type
       const Section: string; var Result: Integer);
     procedure RichEdit1SelectionChange(Sender: TObject);
     procedure ActionSearchExecute(Sender: TObject);
+    procedure EditPaste1Execute(Sender: TObject);
   private
     { Private 宣言 }
     procedure HandleThemes;
@@ -94,7 +95,7 @@ var
 
 implementation
 
-uses Unit2, WindowsDarkMode;
+uses Unit2, WindowsDarkMode, clipbrd;
 
 {$R *.dfm}
 
@@ -211,6 +212,14 @@ procedure TForm1.ApplicationEvents1SettingChange(Sender: TObject; Flag: Integer;
 begin
   if SameText('ImmersiveColorSet', String(Section)) then
     HandleThemes; //ダークモード
+end;
+
+procedure TForm1.EditPaste1Execute(Sender: TObject);
+begin
+  if Clipboard.HasFormat(CF_TEXT) then
+  begin
+    RichEdit1.SelText := Clipboard.AsText;
+  end;
 end;
 
 procedure TForm1.EditRedo1Execute(Sender: TObject);
