@@ -9,6 +9,7 @@ uses
   Unit2 in 'Unit2.pas' {Form2},
   Vcl.Themes,
   Vcl.Styles,
+  System.Math,
   WindowsDarkMode in 'WindowsDarkMode.pas',
   ExtIniFile in 'ExtIniFile.pas';
 
@@ -55,6 +56,10 @@ begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
   Application.Title := 'チラシの裏';
+  //浮動小数点例外を使わない
+  //次の不具合対策：https://learn.microsoft.com/en-us/windows/release-health/status-windows-11-22h2#2947msgdesc
+  //参考:https://qiita.com/ht_deko/items/d572f0b965e21c8125f4
+  SetExceptionMask(exAllArithmeticExceptions);
   Application.CreateForm(TForm1, Form1);
   Application.CreateForm(TForm2, Form2);
   Application.Run;

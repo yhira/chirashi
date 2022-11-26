@@ -169,10 +169,10 @@
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
         <Icon_MainIcon>chirashi_Icon.ico</Icon_MainIcon>
         <VerInfo_AutoIncVersion>true</VerInfo_AutoIncVersion>
-        <VerInfo_Build>35</VerInfo_Build>
-        <VerInfo_Keys>CompanyName=メロブ;FileDescription=$(MSBuildProjectName);FileVersion=2.1.13.35;InternalName=チラシの裏;LegalCopyright=寝ログ;LegalTrademarks=;OriginalFilename=チラシの裏エディター;ProgramID=com.embarcadero.$(MSBuildProjectName);ProductName=$(MSBuildProjectName);ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
+        <VerInfo_Build>37</VerInfo_Build>
+        <VerInfo_Keys>CompanyName=メロブ;FileDescription=$(MSBuildProjectName);FileVersion=2.1.15.37;InternalName=チラシの裏;LegalCopyright=寝ログ;LegalTrademarks=;OriginalFilename=チラシの裏エディター;ProgramID=com.embarcadero.$(MSBuildProjectName);ProductName=$(MSBuildProjectName);ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
         <VerInfo_MajorVer>2</VerInfo_MajorVer>
-        <VerInfo_Release>13</VerInfo_Release>
+        <VerInfo_Release>15</VerInfo_Release>
         <VerInfo_Debug>true</VerInfo_Debug>
         <VerInfo_PreRelease>true</VerInfo_PreRelease>
         <VerInfo_MinorVer>1</VerInfo_MinorVer>
@@ -216,8 +216,8 @@
                 </Excluded_Packages>
             </Delphi.Personality>
             <Deployment Version="3">
-                <DeployFile LocalName="Win64\Release\chirashi.exe" Configuration="Release" Class="ProjectOutput">
-                    <Platform Name="Win64">
+                <DeployFile LocalName="Win32\Debug\chirashi.exe" Configuration="Debug" Class="ProjectOutput">
+                    <Platform Name="Win32">
                         <RemoteName>chirashi.exe</RemoteName>
                         <Overwrite>true</Overwrite>
                     </Platform>
@@ -228,8 +228,8 @@
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployFile LocalName="Win32\Debug\chirashi.exe" Configuration="Debug" Class="ProjectOutput">
-                    <Platform Name="Win32">
+                <DeployFile LocalName="Win64\Release\chirashi.exe" Configuration="Release" Class="ProjectOutput">
+                    <Platform Name="Win64">
                         <RemoteName>chirashi.exe</RemoteName>
                         <Overwrite>true</Overwrite>
                     </Platform>
