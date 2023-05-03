@@ -728,7 +728,6 @@ object Form1: TForm1
     TabOrder = 1
     Zoom = 100
     OnSelectionChange = RichEdit1SelectionChange
-    ExplicitLeft = -8
     ExplicitTop = 47
   end
   object ActionManager1: TActionManager

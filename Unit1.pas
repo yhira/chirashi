@@ -163,7 +163,8 @@ end;
 
 procedure TForm1.Action3Execute(Sender: TObject);
 begin
-  RichEdit1.Clear;
+  RichEdit1.SelectAll;
+  RichEdit1.ClearSelection;
 end;
 
 procedure TForm1.Action4Execute(Sender: TObject);
