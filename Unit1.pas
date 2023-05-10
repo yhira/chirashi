@@ -53,7 +53,7 @@ type
     A1: TMenuItem;
     N4: TMenuItem;
     C2: TMenuItem;
-    ToolButton14: TToolButton;
+    ToolButtonUndo: TToolButton;
     ToolButton15: TToolButton;
     ActionTop: TAction;
     ToolButton16: TToolButton;
@@ -67,6 +67,7 @@ type
     SeparatorSearch: TMenuItem;
     ToolButton19: TToolButton;
     ToolButton20: TToolButton;
+    ToolButtonRedo: TToolButton;
     procedure FormCreate(Sender: TObject);
     procedure Action1Execute(Sender: TObject);
     procedure FormActivate(Sender: TObject);
@@ -82,9 +83,14 @@ type
     procedure RichEdit1SelectionChange(Sender: TObject);
     procedure ActionSearchExecute(Sender: TObject);
     procedure EditPaste1Execute(Sender: TObject);
+    procedure RichEdit1Change(Sender: TObject);
   private
     { Private êÈåæ }
     procedure HandleThemes;
+    function CanUndo(RichEdit: TRichEdit): Boolean;
+    function CanRedo(RichEdit: TRichEdit): Boolean;
+    procedure Undo(RichEdit: TRichEdit);
+    procedure Redo(RichEdit: TRichEdit);
   public
     { Public êÈåæ }
   end;
@@ -93,11 +99,40 @@ var
   Form1: TForm1;
   ExIniFile: TExtIniFile;
 
+const
+  EM_CANUNDO = WM_USER + 23;
+  EM_UNDO = WM_USER + 23;
+  EM_CANREDO = WM_USER + 84;
+  EM_REDO = WM_USER + 84;
+  EM_EMPTYUNDOBUFFER = WM_USER + 28;
+
 implementation
 
 uses Unit2, WindowsDarkMode, clipbrd;
 
 {$R *.dfm}
+
+function TForm1.CanUndo(RichEdit: TRichEdit): Boolean;
+begin
+  Result := SendMessage(RichEdit.Handle, EM_CANUNDO, 0, 0) <> 0;
+end;
+
+function TForm1.CanRedo(RichEdit: TRichEdit): Boolean;
+begin
+  Result := SendMessage(RichEdit.Handle, EM_CANREDO, 0, 0) <> 0;
+end;
+
+procedure TForm1.Undo(RichEdit: TRichEdit);
+begin
+  if CanUndo(RichEdit) then
+    SendMessage(RichEdit.Handle, EM_UNDO, 0, 0);
+end;
+
+procedure TForm1.Redo(RichEdit: TRichEdit);
+begin
+  if CanRedo(RichEdit) then
+    SendMessage(RichEdit.Handle, EM_REDO, 0, 0);
+end;
 
 procedure TForm1.HandleThemes;
 begin
@@ -108,6 +143,12 @@ begin
   end else begin
    RichEdit1.Font.Color := clBlack;
   end;
+end;
+
+procedure TForm1.RichEdit1Change(Sender: TObject);
+begin
+  ToolButtonUndo.Enabled := TRichEdit(Sender).CanUndo;
+  ToolButtonRedo.Enabled := CanRedo(TRichEdit(Sender));
 end;
 
 procedure TForm1.RichEdit1SelectionChange(Sender: TObject);
@@ -240,7 +281,7 @@ end;
 
 procedure TForm1.EditRedo1Execute(Sender: TObject);
 begin
-  RichEdit1.Undo;
+  Redo(RichEdit1);
 end;
 
 procedure TForm1.FormActivate(Sender: TObject);
