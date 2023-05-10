@@ -136,11 +136,26 @@ end;
 procedure TForm1.Action1Execute(Sender: TObject);
 var
   iLineNow: integer;
+  sl: TStringList;
 begin
-  RichEdit1.Lines.Insert(0, '----------------------------------------');
-  RichEdit1.Lines.Insert(0, DateTimeToStr(Now));
-  RichEdit1.Lines.Insert(0, '');
-  RichEdit1.Lines.Insert(0, '');
+  sl := TStringList.Create();
+  try
+    // 挿入文字の作成
+    sl.Insert(0, '----------------------------------------');
+    sl.Insert(0, DateTimeToStr(Now));
+    sl.Insert(0, '');
+    sl.Insert(0, '');
+
+    // キャレット位置を最初の行の先頭に移動
+    RichEdit1.SelStart := 0;
+    RichEdit1.SelLength := 0;
+
+    // 作成したテキストを挿入
+    SendMessage(RichEdit1.Handle, EM_REPLACESEL, WPARAM(True), LPARAM(PChar(sl.Text)));
+  finally
+    sl.Free;
+  end;
+
   with RichEdit1 do
   begin
     // 現在のカーソルのある行を得る
@@ -219,7 +234,7 @@ procedure TForm1.EditPaste1Execute(Sender: TObject);
 begin
   if Clipboard.HasFormat(CF_TEXT) then
   begin
-    RichEdit1.SelText := Clipboard.AsText;
+    SendMessage(RichEdit1.Handle, EM_REPLACESEL, WPARAM(True), LPARAM(PChar(Clipboard.AsText)));
   end;
 end;
 
