@@ -732,10 +732,7 @@ object Form1: TForm1
     ScrollBars = ssVertical
     TabOrder = 1
     Zoom = 100
-    OnChange = RichEdit1Change
     OnSelectionChange = RichEdit1SelectionChange
-    ExplicitLeft = -8
-    ExplicitTop = 47
   end
   object ActionManager1: TActionManager
     Images = VirtualImageList1

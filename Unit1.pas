@@ -83,7 +83,6 @@ type
     procedure RichEdit1SelectionChange(Sender: TObject);
     procedure ActionSearchExecute(Sender: TObject);
     procedure EditPaste1Execute(Sender: TObject);
-    procedure RichEdit1Change(Sender: TObject);
   private
     { Private êÈåæ }
     procedure HandleThemes;
@@ -105,6 +104,7 @@ const
   EM_CANREDO = WM_USER + 84;
   EM_REDO = WM_USER + 84;
   EM_EMPTYUNDOBUFFER = WM_USER + 28;
+  EM_SETUNDOLIMIT = WM_USER + 97;
 
 implementation
 
@@ -143,12 +143,6 @@ begin
   end else begin
    RichEdit1.Font.Color := clBlack;
   end;
-end;
-
-procedure TForm1.RichEdit1Change(Sender: TObject);
-begin
-  ToolButtonUndo.Enabled := TRichEdit(Sender).CanUndo;
-  ToolButtonRedo.Enabled := CanRedo(TRichEdit(Sender));
 end;
 
 procedure TForm1.RichEdit1SelectionChange(Sender: TObject);
@@ -315,6 +309,7 @@ var
    if FileExists(FileName) then
    begin
      RichEdit1.Lines.LoadFromFile(FileName);
+     RichEdit1.Perform(EM_SETUNDOLIMIT, 0, 0);
    end;
 end;
 
